@@ -14,7 +14,7 @@ class OscilloscopeGraphic:
         self.__verticalScale = verticalScale
 
     def drawBackground(self, painter, rect):
-        background_brush = QtGui.QBrush(QtGui.QColor(25, 25, 25), QtCore.Qt.SolidPattern)
+        background_brush = QtGui.QBrush(QtGui.QColor(40, 40, 40), QtCore.Qt.SolidPattern)
         painter.fillRect(rect, background_brush)
 
         pen = QtGui.QPen(QtGui.QColor(255, 255, 255))

@@ -115,7 +115,7 @@ class Ui_RaspDigitalOscilloscope(object):
 
     def retranslateUi(self, RaspDigitalOscilloscope):
         _translate = QtCore.QCoreApplication.translate
-        RaspDigitalOscilloscope.setWindowTitle(_translate("RaspDigitalOscilloscope", "MainWindow"))
+        RaspDigitalOscilloscope.setWindowTitle(_translate("RaspDigitalOscilloscope", "RaspDigitalOscilloscope"))
         self.channel_1_label.setText(_translate("RaspDigitalOscilloscope", "Channel 1"))
         self.channel_1_vscale_label.setText(_translate("RaspDigitalOscilloscope", "Vertical Scale(V/div)"))
         self.channel_1_hscale_label.setText(_translate("RaspDigitalOscilloscope", "Horizontal Scale(s/div)"))
