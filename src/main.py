@@ -1,12 +1,20 @@
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtWidgets
+from view.main_window import Ui_RaspDigitalOscilloscope
 import sys
 
-class Ui(QtWidgets.QMainWindow):
+class ApplicationWindow(QtWidgets.QMainWindow):
     def __init__(self):
-        super(Ui, self).__init__()
-        uic.loadUi('../main_frame.ui', self)
-        self.show()
+        super(ApplicationWindow, self).__init__()
 
-app = QtWidgets.QApplication(sys.argv)
-window = Ui()
-app.exec_()
+        self.ui = Ui_RaspDigitalOscilloscope()
+        self.ui.setupUi(self)
+
+
+def main():
+    app = QtWidgets.QApplication(sys.argv)
+    application = ApplicationWindow()
+    application.show()
+    sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    main()

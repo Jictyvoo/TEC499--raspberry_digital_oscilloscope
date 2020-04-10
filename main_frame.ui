@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>rasp_digital_oscilloscope</class>
- <widget class="QMainWindow" name="rasp_digital_oscilloscope">
+ <class>RaspDigitalOscilloscope</class>
+ <widget class="QMainWindow" name="RaspDigitalOscilloscope">
   <property name="geometry">
    <rect>
     <x>0</x>

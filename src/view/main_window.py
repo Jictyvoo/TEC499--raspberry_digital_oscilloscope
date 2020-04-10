@@ -10,11 +10,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_rasp_digital_oscilloscope(object):
-    def setupUi(self, rasp_digital_oscilloscope):
-        rasp_digital_oscilloscope.setObjectName("rasp_digital_oscilloscope")
-        rasp_digital_oscilloscope.resize(659, 517)
-        self.centralwidget = QtWidgets.QWidget(rasp_digital_oscilloscope)
+class Ui_RaspDigitalOscilloscope(object):
+    def setupUi(self, RaspDigitalOscilloscope):
+        RaspDigitalOscilloscope.setObjectName("RaspDigitalOscilloscope")
+        RaspDigitalOscilloscope.resize(659, 517)
+        self.centralwidget = QtWidgets.QWidget(RaspDigitalOscilloscope)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -101,36 +101,36 @@ class Ui_rasp_digital_oscilloscope(object):
         self.commands_hlayout.addLayout(self.channels_config_vlayout)
         self.verticalLayout_3.addLayout(self.commands_hlayout)
         self.verticalLayout.addWidget(self.frame)
-        rasp_digital_oscilloscope.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(rasp_digital_oscilloscope)
+        RaspDigitalOscilloscope.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(RaspDigitalOscilloscope)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 659, 21))
         self.menubar.setObjectName("menubar")
-        rasp_digital_oscilloscope.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(rasp_digital_oscilloscope)
+        RaspDigitalOscilloscope.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(RaspDigitalOscilloscope)
         self.statusbar.setObjectName("statusbar")
-        rasp_digital_oscilloscope.setStatusBar(self.statusbar)
+        RaspDigitalOscilloscope.setStatusBar(self.statusbar)
 
-        self.retranslateUi(rasp_digital_oscilloscope)
-        QtCore.QMetaObject.connectSlotsByName(rasp_digital_oscilloscope)
+        self.retranslateUi(RaspDigitalOscilloscope)
+        QtCore.QMetaObject.connectSlotsByName(RaspDigitalOscilloscope)
 
-    def retranslateUi(self, rasp_digital_oscilloscope):
+    def retranslateUi(self, RaspDigitalOscilloscope):
         _translate = QtCore.QCoreApplication.translate
-        rasp_digital_oscilloscope.setWindowTitle(_translate("rasp_digital_oscilloscope", "MainWindow"))
-        self.channel_1_label.setText(_translate("rasp_digital_oscilloscope", "Channel 1"))
-        self.channel_1_vscale_label.setText(_translate("rasp_digital_oscilloscope", "Vertical Scale(V/div)"))
-        self.channel_1_hscale_label.setText(_translate("rasp_digital_oscilloscope", "Horizontal Scale(s/div)"))
-        self.channel_2_label.setText(_translate("rasp_digital_oscilloscope", "Channel 2"))
-        self.channel_2_vscale_label.setText(_translate("rasp_digital_oscilloscope", "Vertical Scale(V/div)"))
-        self.channel_2_hscale_label.setText(_translate("rasp_digital_oscilloscope", "Horizontal Scale(s/div)"))
-        self.channel_1checkbox.setText(_translate("rasp_digital_oscilloscope", "Channel 1 - Green"))
-        self.channel_2_checkbox.setText(_translate("rasp_digital_oscilloscope", "Channel 2 - Yellow"))
+        RaspDigitalOscilloscope.setWindowTitle(_translate("RaspDigitalOscilloscope", "MainWindow"))
+        self.channel_1_label.setText(_translate("RaspDigitalOscilloscope", "Channel 1"))
+        self.channel_1_vscale_label.setText(_translate("RaspDigitalOscilloscope", "Vertical Scale(V/div)"))
+        self.channel_1_hscale_label.setText(_translate("RaspDigitalOscilloscope", "Horizontal Scale(s/div)"))
+        self.channel_2_label.setText(_translate("RaspDigitalOscilloscope", "Channel 2"))
+        self.channel_2_vscale_label.setText(_translate("RaspDigitalOscilloscope", "Vertical Scale(V/div)"))
+        self.channel_2_hscale_label.setText(_translate("RaspDigitalOscilloscope", "Horizontal Scale(s/div)"))
+        self.channel_1checkbox.setText(_translate("RaspDigitalOscilloscope", "Channel 1 - Green"))
+        self.channel_2_checkbox.setText(_translate("RaspDigitalOscilloscope", "Channel 2 - Yellow"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    rasp_digital_oscilloscope = QtWidgets.QMainWindow()
-    ui = Ui_rasp_digital_oscilloscope()
-    ui.setupUi(rasp_digital_oscilloscope)
-    rasp_digital_oscilloscope.show()
+    RaspDigitalOscilloscope = QtWidgets.QMainWindow()
+    ui = Ui_RaspDigitalOscilloscope()
+    ui.setupUi(RaspDigitalOscilloscope)
+    RaspDigitalOscilloscope.show()
     sys.exit(app.exec_())
