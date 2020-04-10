@@ -20,12 +20,18 @@ class OscilloscopeGraphic:
         pen = QtGui.QPen(QtGui.QColor(255, 255, 255))
         pen.setWidth(2)
         painter.setPen(pen)
+        cellsize = 32
+        allLines = []
+        horigin = int(rect.height() / -2)
+        worigin = int(rect.width() / -2)
+        for column in range(horigin, int(rect.height()), cellsize):
+            line = QtCore.QLineF(horigin, column, int(rect.width()), column)
+            allLines.append(line)
+        for row in range(worigin, int(rect.width()), cellsize):
+            line = QtCore.QLineF(row, worigin, row, int(rect.height()))
+            allLines.append(line)
 
-        line1 = QtCore.QLineF(0,0,0,100)
-        line2 = QtCore.QLineF(0,100,100,100)
-        line3 = QtCore.QLineF(100,100,100,0)
-        line4 = QtCore.QLineF(100,0,0,0)
-        painter.drawLines([line1, line2, line3, line4])
+        painter.drawLines(allLines)
 
     '''def draw_grid(self):
         side = 20
