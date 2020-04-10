@@ -13,5 +13,5 @@ class I2CHandler(threading.Thread):
             time.sleep(0.7)
             lightlvl = self.__i2c.lightlevel()
             rng = self.__i2c.range()
-            print(lightlvl)
-            print(rng)
+            print("light_level", lightlvl)
+            print("rng", rng)
