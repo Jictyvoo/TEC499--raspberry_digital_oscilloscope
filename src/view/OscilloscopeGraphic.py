@@ -18,25 +18,32 @@ class OscilloscopeGraphic:
         painter.fillRect(rect, background_brush)
 
         pen = QtGui.QPen(QtGui.QColor(255, 255, 255))
-        pen.setWidth(2)
+        pen.setWidth(1)
         painter.setPen(pen)
         cellsize = 32
         allLines = []
         horigin = int(rect.height() / -2)
         worigin = int(rect.width() / -2)
-        for column in range(horigin, int(rect.height()), cellsize):
-            line = QtCore.QLineF(horigin, column, int(rect.width()), column)
+        '''Drawing columns to right and to left'''
+        for column in range(0, int(rect.height()), cellsize):
+            line = QtCore.QLineF(worigin, column, int(rect.width()), column)
             allLines.append(line)
-        for row in range(worigin, int(rect.width()), cellsize):
-            line = QtCore.QLineF(row, worigin, row, int(rect.height()))
+        for column in range(0, horigin, cellsize * -1):
+            line = QtCore.QLineF(worigin, column, int(rect.width()), column)
             allLines.append(line)
 
+        '''Drawing rows to up and to down'''
+        for row in range(0, int(rect.width()), cellsize):
+            line = QtCore.QLineF(row, horigin, row, int(rect.height()))
+            allLines.append(line)
+        for row in range(0, worigin, cellsize * -1):
+            line = QtCore.QLineF(row, horigin, row, int(rect.height()))
+            allLines.append(line)
         painter.drawLines(allLines)
 
-    '''def draw_grid(self):
-        side = 20
-        pen = QtGui.QPen(QtCore.Qt.black)
-        for i in range(16):
-            for j in range(16):
-                rectangle = QtCore.QRectF(QtCore.QPointF(i*side, j*side), QtCore.QSizeF(side, side))
-                self.__scene.addRect(rectangle, pen)'''
+        '''Drawing center lines'''
+        pen.setWidth(5)
+        painter.setPen(pen)
+        line_1 = QtCore.QLineF(0, horigin, 0, int(rect.height()))
+        line_2 = QtCore.QLineF(worigin, 0, int(rect.width()), 0)
+        painter.drawLines([line_1, line_2])
