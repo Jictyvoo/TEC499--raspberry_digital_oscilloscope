@@ -136,7 +136,7 @@
            <item>
             <layout class="QHBoxLayout" name="channels_checkbox_hlayout">
              <item>
-              <widget class="QCheckBox" name="channel_1checkbox">
+              <widget class="QCheckBox" name="channel_1_checkbox">
                <property name="text">
                 <string>Channel 1 - Green</string>
                </property>

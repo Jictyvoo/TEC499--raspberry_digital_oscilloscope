@@ -47,3 +47,6 @@ class OscilloscopeGraphic:
         line_1 = QtCore.QLineF(0, horigin, 0, int(rect.height()))
         line_2 = QtCore.QLineF(worigin, 0, int(rect.width()), 0)
         painter.drawLines([line_1, line_2])
+
+    def drawChannelsCurves(self, channel_1=True, channel_2=False):
+        print("draw")

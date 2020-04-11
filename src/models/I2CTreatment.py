@@ -3,9 +3,6 @@ import time
 import random #random is used to provide a random number as light level
 
 class I2CTreatment:
-    __smbus = None
-    __address = 0x70
-
     def __init__(self):
         self.__address = 0x70
         self.__smbus = GPIO.SMBus(1)
@@ -16,7 +13,9 @@ class I2CTreatment:
     def write(self, value):
         self.__smbus.write_byte_data(self.__address, 0, value)
         #provide a random number to register 1 (light level)
-        GPIO.add_autoreply(self.__address, 1, random.randrange(0, 255, 1))
+        temporary = random.randrange(0, 255, 1)
+        # print(temporary)
+        GPIO.add_autoreply(self.__address, 1, temporary)
         return -1
 
     def lightlevel(self):

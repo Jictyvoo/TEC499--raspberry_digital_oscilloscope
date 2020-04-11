@@ -9,5 +9,7 @@ python -m PyQt5.uic.pyuic -x main_frame.ui -o src/view/main_window.py
 
 Execute
 
-* ```shell pip install pygame```
-* ```shell pip install PyQt5```
+* ```pip install pygame```
+* ```pip install PyQt5```
+
+Currently you'll need to install Yarpie emulator on your environment to test it

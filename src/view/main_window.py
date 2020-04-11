@@ -91,9 +91,9 @@ class Ui_RaspDigitalOscilloscope(object):
         self.channels_config_vlayout.addLayout(self.channel_scales_hlayout)
         self.channels_checkbox_hlayout = QtWidgets.QHBoxLayout()
         self.channels_checkbox_hlayout.setObjectName("channels_checkbox_hlayout")
-        self.channel_1checkbox = QtWidgets.QCheckBox(self.frame)
-        self.channel_1checkbox.setObjectName("channel_1checkbox")
-        self.channels_checkbox_hlayout.addWidget(self.channel_1checkbox)
+        self.channel_1_checkbox = QtWidgets.QCheckBox(self.frame)
+        self.channel_1_checkbox.setObjectName("channel_1_checkbox")
+        self.channels_checkbox_hlayout.addWidget(self.channel_1_checkbox)
         self.channel_2_checkbox = QtWidgets.QCheckBox(self.frame)
         self.channel_2_checkbox.setObjectName("channel_2_checkbox")
         self.channels_checkbox_hlayout.addWidget(self.channel_2_checkbox)
@@ -122,7 +122,7 @@ class Ui_RaspDigitalOscilloscope(object):
         self.channel_2_label.setText(_translate("RaspDigitalOscilloscope", "Channel 2"))
         self.channel_2_vscale_label.setText(_translate("RaspDigitalOscilloscope", "Vertical Scale(V/div)"))
         self.channel_2_hscale_label.setText(_translate("RaspDigitalOscilloscope", "Horizontal Scale(s/div)"))
-        self.channel_1checkbox.setText(_translate("RaspDigitalOscilloscope", "Channel 1 - Green"))
+        self.channel_1_checkbox.setText(_translate("RaspDigitalOscilloscope", "Channel 1 - Green"))
         self.channel_2_checkbox.setText(_translate("RaspDigitalOscilloscope", "Channel 2 - Yellow"))
 
 
