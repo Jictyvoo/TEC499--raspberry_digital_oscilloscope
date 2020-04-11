@@ -14,11 +14,13 @@ class EventHandler(threading.Thread):
         if channel_checkbox == 1:
             if self.__ui.channel_1_checkbox.isChecked():
                 print("Checked 1")
-
+            else:
+                print("Unchecked 1")
         elif channel_checkbox == 2:
-            if self.__ui.channel_1_checkbox.isChecked():
+            if self.__ui.channel_2_checkbox.isChecked():
                 print("Checked 2")
-
+            else:
+                print("Unchecked 2")
 
     def run(self):
         self.__i2cThread.start()
