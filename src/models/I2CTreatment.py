@@ -1,6 +1,7 @@
 import RPi_emu.GPIO as GPIO
 import time
-import random #random is used to provide a random number as light level
+import random  # random is used to provide a random number as light level
+
 
 class I2CTreatment:
     def __init__(self):
@@ -12,15 +13,17 @@ class I2CTreatment:
 
     def write(self, value):
         self.__smbus.write_byte_data(self.__address, 0, value)
-        #provide a random number to register 1 (light level)
+        # provide a random number to register 1 (light level)
         temporary = random.randrange(0, 255, 1)
         # print(temporary)
         GPIO.add_autoreply(self.__address, 1, temporary)
         return -1
 
-    def lightlevel(self):
-        light = self.__smbus.read_byte_data(self.__address, 1)
-        return light
+    def getVoltage(self):
+        voltage_binary = self.__smbus.read_byte_data(self.__address, 1)
+        # Converting binary to voltage
+        voltage = (5 * voltage_binary) / 256.0
+        return voltage
 
     def range(self):
         range_1 = self.__smbus.read_byte_data(self.__address, 2)

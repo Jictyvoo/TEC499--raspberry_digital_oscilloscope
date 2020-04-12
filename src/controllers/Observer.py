@@ -1,5 +1,6 @@
 import threading
 
+
 class EventHandler(threading.Thread):
     def __init__(self, ui, oscilloscopeGraphic, i2cThread):
         threading.Thread.__init__(self)
@@ -7,8 +8,10 @@ class EventHandler(threading.Thread):
         self.__ui = ui
         self.__i2cThread = i2cThread
         self.__oscilloscopeGraphic = oscilloscopeGraphic
-        self.__ui.channel_1_checkbox.stateChanged.connect(lambda: self.checkbox_state_changed(1))
-        self.__ui.channel_2_checkbox.stateChanged.connect(lambda: self.checkbox_state_changed(2))
+        self.__ui.channel_1_checkbox.stateChanged.connect(
+            lambda: self.checkbox_state_changed(1))
+        self.__ui.channel_2_checkbox.stateChanged.connect(
+            lambda: self.checkbox_state_changed(2))
 
     def checkbox_state_changed(self, channel_checkbox=1):
         if channel_checkbox == 1:

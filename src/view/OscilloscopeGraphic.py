@@ -1,12 +1,13 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 
+
 class OscilloscopeGraphic:
     def __init__(self, graphicsView, scene):
         self.__graphicsView = graphicsView
         self.__scene = scene
         self.__verticalScale = 1
         self.__horizontalScale = 1
-    
+
     def setHorizontalScale(self, horizontalScale):
         self.__horizontalScale = horizontalScale
 
@@ -14,7 +15,8 @@ class OscilloscopeGraphic:
         self.__verticalScale = verticalScale
 
     def drawBackground(self, painter, rect):
-        background_brush = QtGui.QBrush(QtGui.QColor(40, 40, 40), QtCore.Qt.SolidPattern)
+        background_brush = QtGui.QBrush(
+            QtGui.QColor(40, 40, 40), QtCore.Qt.SolidPattern)
         painter.fillRect(rect, background_brush)
 
         pen = QtGui.QPen(QtGui.QColor(255, 255, 255))
