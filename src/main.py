@@ -12,6 +12,16 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
         self.ui = Ui_RaspDigitalOscilloscope()
         self.ui.setupUi(self)
+
+        self.ui.channel_1_vertical_scale.setMinimum(1)
+        self.ui.channel_1_vertical_scale.setMaximum(10)
+        self.ui.channel_1_horizontal_scale.setMinimum(1)
+        self.ui.channel_1_horizontal_scale.setMaximum(10)
+        self.ui.channel_2_vertical_scale.setMinimum(1)
+        self.ui.channel_2_vertical_scale.setMaximum(10)
+        self.ui.channel_2_horizontal_scale.setMinimum(1)
+        self.ui.channel_2_horizontal_scale.setMaximum(10)
+
         self.scene = QtWidgets.QGraphicsScene()
         self.ui.graphicsView.setScene(self.scene)
         self.oscilloscopeGraphic = OscilloscopeGraphic(

@@ -22,14 +22,14 @@ class I2CHandler(threading.Thread):
 
     def _update_voltage_list(self):
         self.__i2c.write(0x51)
+        time.sleep(0.7)
         channel_1 = self.__i2c.getVoltage()
         self.__update_voltage(0, channel_1)
-        time.sleep(0.2)
         self.__i2c.write(0x51)
+        # time.sleep(0.7)
         channel_2 = self.__i2c.getVoltage()
         self.__update_voltage(1, channel_2)
-        # print("channel_1", channel_1, "channel_2", channel_2)
-        time.sleep(0.5)
+        print("channel_1", channel_1, "channel_2", channel_2)
 
     def get_voltage(self):
         return tuple(self.__voltages[0]), tuple(self.__voltages[1])
