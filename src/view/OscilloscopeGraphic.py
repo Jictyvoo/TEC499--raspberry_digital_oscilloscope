@@ -9,6 +9,10 @@ class OscilloscopeGraphic:
             QtGui.QPen(QtGui.QColor(156, 234, 157)),
             QtGui.QPen(QtGui.QColor(234, 228, 156))
         )
+        self.__paths = (
+            QtGui.QPainterPath(),
+            QtGui.QPainterPath()
+        )
         self.__channels_settings = (
             {
                 "scale": {"vertical": 1, "horizontal": 1},
@@ -71,17 +75,20 @@ class OscilloscopeGraphic:
     def __voltageValueToPoint(self, value=5):
         return QtGui.QPoint(0, 0)
 
-    def _drawSingleCurve(self, selected_pen=QtGui.QPen(QtGui.QColor(255, 255, 255)), values=[]):
-        selected_pen.setWidth(3)
-        path = QtGui.QPainterPath()
+    def _drawSingleCurve(self, selected_pen=0, values=[]):
+        self.__paths[selected_pen].clear()
+        pen = self.__pens[selected_pen]
+        pen.setWidth(3)
+        path = self.__paths[selected_pen]
         path.moveTo(0, 0)
         path.cubicTo(99, 0,  50, 50,  99, 99)
         path.cubicTo(0, 99,  50, 50,  0, 0)
         path.moveTo(0, 0)
-        self.__scene.addPath(path, selected_pen)
+        self.__scene.addPath(path, pen)
 
     def drawChannelsCurves(self, channel_1=[], channel_2=[]):
+        self.__scene.clear()
         if self.__channels_settings[0].get("visible"):
-            self._drawSingleCurve(self.__pens[0], channel_1)
+            self._drawSingleCurve(0, channel_1)
         if self.__channels_settings[1].get("visible"):
-            self._drawSingleCurve(self.__pens[1], channel_2)
+            self._drawSingleCurve(1, channel_2)
