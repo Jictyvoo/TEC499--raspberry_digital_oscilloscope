@@ -50,5 +50,11 @@ class OscilloscopeGraphic:
         line_2 = QtCore.QLineF(worigin, 0, int(rect.width()), 0)
         painter.drawLines([line_1, line_2])
 
-    def drawChannelsCurves(self, channel_1=True, channel_2=False):
-        print("draw")
+    def _drawSingleCurve(self, color=QtGui.QPen(QtGui.QColor(255, 255, 255)), values=[]):
+        print("Safe")
+
+    def drawChannelsCurves(self, channel_1=[], channel_2=[]):
+        self._drawSingleCurve(QtGui.QPen(
+            QtGui.QColor(156, 234, 157)), channel_1)
+        self._drawSingleCurve(QtGui.QPen(
+            QtGui.QColor(234, 228, 156)), channel_2)

@@ -30,5 +30,5 @@ if __name__ == "__main__":
     application = ApplicationWindow()
     eventHandler = EventHandler(
         application.ui, application.oscilloscopeGraphic, I2CHandler())
-    eventHandler.start()
+    eventHandler.run()
     execute_oscilloscope(app, application)
