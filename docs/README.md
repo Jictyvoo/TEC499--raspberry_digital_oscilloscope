@@ -12,7 +12,7 @@ This program is based on I2C protocol to communicate the SBC with the ADS1115. A
 
 ### 1.1 Elements of the Library
 
-* 'OscilloscopeGraphic'
+* 'OscilloscopeGraphic' - contains the visual implementation of a Oscilloscope screen.
 * 'I2CTreatment'
 * 'I2CHandler'
 * 'Observer'
