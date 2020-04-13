@@ -20,6 +20,9 @@ class EventHandler():
             lambda: self.__scale_change(self.__ui.channel_2_vertical_scale, False, 1))
         self.__ui.channel_2_horizontal_scale.valueChanged.connect(
             lambda: self.__scale_change(self.__ui.channel_2_horizontal_scale, True, 1))
+        # Add callback to double spin box
+        self.__ui.synchronization_delay_input.valueChanged.connect(
+            lambda: self.__i2cThread.set_delay_time(self.__ui.synchronization_delay_input.value()))
         self.__timer = QtCore.QTimer()
         self.__timer.timeout.connect(self.update_values_draw)
         self.__timer.start(50)
