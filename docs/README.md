@@ -1,9 +1,23 @@
 # Raspberry Digital Oscilloscope
 
+This project is based on the intent to emulate an oscilloscope using a Raspberry Pi, a singleboard computer, and a Signal converter, ADS1115, but later we switched to Yarpie to emulate the signals the program receives by I2C protocol.
+
 To generate scripts write in terminal
 ```shell
 python -m PyQt5.uic.pyuic -x main_frame.ui -o src/view/main_window.py
 ```
+## 1. Description
+
+This program is based on I2C protocol to communicate the SBC with the ADS1115. After the communication is sucessful, the data will be shown at the screen, similar to an oscilloscope, where the user will be able to check the scale, change it if needed, and check the signals the SBC is receiving.
+
+### 1.1 Elements of the Library
+
+* 'OscilloscopeGraphic'
+* 'I2CTreatment'
+* 'I2CHandler'
+* 'Observer'
+
+## Usage
 
 ## Setup
 
