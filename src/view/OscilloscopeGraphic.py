@@ -90,14 +90,18 @@ class OscilloscopeGraphic:
         pen.setWidth(3)
         path = self.__paths[selected_pen]
         path.moveTo(0, 0)
-        counter = 0
-        for voltage in values:
-            read_time = counter * self.__screen_size.get("cellsize")
-            point = self.__voltageValueToPoint(voltage, read_time)
-            next_time = (counter + 1) * self.__screen_size.get("cellsize")
-            path.cubicTo(QtCore.QPoint(read_time, 0),
-                         point, QtCore.QPoint(next_time, 0))
-            counter += 1
+        previous_last_point = self.__voltageValueToPoint(values[0], 0)
+        for counter in range(1, len(values), 2):
+            if len(values) > counter + 1:
+                read_time = counter * self.__screen_size.get("cellsize")
+                voltage_1, voltage_2 = values[counter], values[counter + 1]
+                control_point_1 = previous_last_point
+                control_point_2 = self.__voltageValueToPoint(
+                    voltage_1, read_time)
+                read_time = (counter + 1) * self.__screen_size.get("cellsize")
+                end_point = self.__voltageValueToPoint(voltage_2, read_time)
+                path.cubicTo(control_point_1, control_point_2, end_point)
+                previous_last_point = end_point
         self.__scene.addPath(path, pen)
 
     def drawChannelsCurves(self, channel_1=[], channel_2=[]):
