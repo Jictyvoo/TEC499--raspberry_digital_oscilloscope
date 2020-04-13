@@ -86,7 +86,7 @@ class OscilloscopeGraphic:
             "scale").get("horizontal")
         scale_y = self.__channels_settings[channel].get(
             "scale").get("vertical")
-        return QtCore.QPoint(read_time * scale_x, yPosition * scale_y)
+        return QtCore.QPointF(read_time * scale_x, yPosition * scale_y)
 
     def _drawSingleCurve(self, selected_pen=0, values=[]):
         self.__paths[selected_pen].clear()
