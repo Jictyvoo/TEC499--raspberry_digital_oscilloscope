@@ -15,11 +15,11 @@ class OscilloscopeGraphic:
         )
         self.__channels_settings = (
             {
-                "scale": {"vertical": 1, "horizontal": 1},
+                "scale": {"vertical": 0.6, "horizontal": 0.1},
                 "visible": False
             },
             {
-                "scale": {"vertical": 1, "horizontal": 1},
+                "scale": {"vertical": 0.6, "horizontal": 0.1},
                 "visible": False
             }
         )
@@ -31,11 +31,11 @@ class OscilloscopeGraphic:
 
     def setHorizontalScale(self, newScale=1, channel=0):
         settings = self.__channels_settings[channel]
-        settings.get("scale").update({"horizontal": newScale})
+        settings.get("scale").update({"horizontal": newScale / 10})
 
     def setVerticalScale(self, newScale=1, channel=0):
         settings = self.__channels_settings[channel]
-        settings.get("scale").update({"vertical": newScale})
+        settings.get("scale").update({"vertical": newScale / 10})
 
     def setChannelVisible(self, channel=0, visible=True):
         self.__channels_settings[channel].update({"visible": visible})
@@ -78,11 +78,15 @@ class OscilloscopeGraphic:
         line_2 = QtCore.QLineF(worigin, 0, int(rect.width()), 0)
         painter.drawLines([line_1, line_2])
 
-    def __voltageValueToPoint(self, value=5, read_time=0):
+    def __voltageValueToPoint(self, value=5, read_time=0, channel=0):
         total_height = self.__screen_size.get("height")
         temp_voltage = value - 2.5
         yPosition = (temp_voltage * total_height) / 2.5
-        return QtCore.QPoint(read_time, yPosition)
+        scale_x = self.__channels_settings[channel].get(
+            "scale").get("horizontal")
+        scale_y = self.__channels_settings[channel].get(
+            "scale").get("vertical")
+        return QtCore.QPoint(read_time * scale_x, yPosition * scale_y)
 
     def _drawSingleCurve(self, selected_pen=0, values=[]):
         self.__paths[selected_pen].clear()
@@ -90,16 +94,18 @@ class OscilloscopeGraphic:
         pen.setWidth(3)
         path = self.__paths[selected_pen]
         path.moveTo(0, 0)
-        previous_last_point = self.__voltageValueToPoint(values[0], 0)
+        previous_last_point = self.__voltageValueToPoint(
+            values[0], 0, selected_pen)
         for counter in range(1, len(values), 2):
             if len(values) > counter + 1:
                 read_time = counter * self.__screen_size.get("cellsize")
                 voltage_1, voltage_2 = values[counter], values[counter + 1]
                 control_point_1 = previous_last_point
                 control_point_2 = self.__voltageValueToPoint(
-                    voltage_1, read_time)
+                    voltage_1, read_time, selected_pen)
                 read_time = (counter + 1) * self.__screen_size.get("cellsize")
-                end_point = self.__voltageValueToPoint(voltage_2, read_time)
+                end_point = self.__voltageValueToPoint(
+                    voltage_2, read_time, selected_pen)
                 path.cubicTo(control_point_1, control_point_2, end_point)
                 previous_last_point = end_point
         self.__scene.addPath(path, pen)
