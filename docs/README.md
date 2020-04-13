@@ -1,6 +1,6 @@
 # Raspberry Digital Oscilloscope
 
-This project is based on the intent to emulate an oscilloscope using a Raspberry Pi, a singleboard computer, and a Signal converter, ADS1115, but later we switched to Yarpie to emulate the signals the program receives by I2C protocol.
+This project is based on the intent to emulate an oscilloscope using a Raspberry Pi, a singleboard computer, and a signal converter, ADS1115, but later we switched to Yarpie to emulate the signals the program receives by I2C protocol.
 
 To generate scripts write in terminal
 ```shell
