@@ -13,9 +13,9 @@ This program is based on I2C protocol to communicate the SBC with the ADS1115. A
 ### 1.1 Elements of the Library
 
 * 'OscilloscopeGraphic' - contains the visual implementation of a Oscilloscope screen.
-* 'I2CTreatment'
-* 'I2CHandler'
-* 'Observer'
+* 'I2CTreatment' - responsible for converting the received data in voltage scale for the oscilloscope.
+* 'I2CHandler' - responsible for creating and maintaing the communication via I2C with the conversor.
+* 'Observer' - responsible for handling events that may occurs during the application process.
 
 ## Usage
 
