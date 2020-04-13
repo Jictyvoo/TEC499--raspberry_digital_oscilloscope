@@ -23,6 +23,11 @@ class OscilloscopeGraphic:
                 "visible": False
             }
         )
+        self.__screen_size = {
+            "width": 0,
+            "height": 0,
+            "cellsize": 32
+        }
 
     def setHorizontalScale(self, newScale=1, channel=0):
         settings = self.__channels_settings[channel]
@@ -44,23 +49,24 @@ class OscilloscopeGraphic:
         pen = QtGui.QPen(QtGui.QColor(255, 255, 255))
         pen.setWidth(1)
         painter.setPen(pen)
-        cellsize = 32
         allLines = []
-        horigin = int(rect.height() / -2)
-        worigin = int(rect.width() / -2)
+        horigin = int(rect.height() / -1)
+        worigin = int(rect.width() / -1)
+        self.__screen_size.update(
+            {"width": rect.width(), "height": rect.height()})
         '''Drawing columns to right and to left'''
-        for column in range(0, int(rect.height()), cellsize):
+        for column in range(0, int(rect.height()), self.__screen_size.get("cellsize")):
             line = QtCore.QLineF(worigin, column, int(rect.width()), column)
             allLines.append(line)
-        for column in range(0, horigin, cellsize * -1):
+        for column in range(0, horigin, self.__screen_size.get("cellsize") * -1):
             line = QtCore.QLineF(worigin, column, int(rect.width()), column)
             allLines.append(line)
 
         '''Drawing rows to up and to down'''
-        for row in range(0, int(rect.width()), cellsize):
+        for row in range(0, int(rect.width()), self.__screen_size.get("cellsize")):
             line = QtCore.QLineF(row, horigin, row, int(rect.height()))
             allLines.append(line)
-        for row in range(0, worigin, cellsize * -1):
+        for row in range(0, worigin, self.__screen_size.get("cellsize") * -1):
             line = QtCore.QLineF(row, horigin, row, int(rect.height()))
             allLines.append(line)
         painter.drawLines(allLines)
@@ -72,8 +78,11 @@ class OscilloscopeGraphic:
         line_2 = QtCore.QLineF(worigin, 0, int(rect.width()), 0)
         painter.drawLines([line_1, line_2])
 
-    def __voltageValueToPoint(self, value=5):
-        return QtGui.QPoint(0, 0)
+    def __voltageValueToPoint(self, value=5, read_time=0):
+        total_height = self.__screen_size.get("height")
+        temp_voltage = value - 2.5
+        yPosition = (temp_voltage * total_height) / 2.5
+        return QtCore.QPoint(read_time, yPosition)
 
     def _drawSingleCurve(self, selected_pen=0, values=[]):
         self.__paths[selected_pen].clear()
@@ -81,9 +90,18 @@ class OscilloscopeGraphic:
         pen.setWidth(3)
         path = self.__paths[selected_pen]
         path.moveTo(0, 0)
-        path.cubicTo(99, 0,  50, 50,  99, 99)
-        path.cubicTo(0, 99,  50, 50,  0, 0)
-        path.moveTo(0, 0)
+        previous_last_point = self.__voltageValueToPoint(values[0], 0)
+        for counter in range(1, len(values), 2):
+            if len(values) > counter + 1:
+                read_time = counter * self.__screen_size.get("cellsize")
+                voltage_1, voltage_2 = values[counter], values[counter + 1]
+                control_point_1 = previous_last_point
+                control_point_2 = self.__voltageValueToPoint(
+                    voltage_1, read_time)
+                read_time = (counter + 1) * self.__screen_size.get("cellsize")
+                end_point = self.__voltageValueToPoint(voltage_2, read_time)
+                path.cubicTo(control_point_1, control_point_2, end_point)
+                previous_last_point = end_point
         self.__scene.addPath(path, pen)
 
     def drawChannelsCurves(self, channel_1=[], channel_2=[]):

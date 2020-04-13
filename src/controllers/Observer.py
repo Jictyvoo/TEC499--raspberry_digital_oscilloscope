@@ -22,7 +22,7 @@ class EventHandler():
             lambda: self.__scale_change(self.__ui.channel_2_horizontal_scale, True, 1))
         self.__timer = QtCore.QTimer()
         self.__timer.timeout.connect(self.update_values_draw)
-        self.__timer.start(100)
+        self.__timer.start(50)
 
     def __scale_change(self, slider, scale_type=False, channel=0):
         if scale_type:
@@ -54,6 +54,3 @@ class EventHandler():
 
     def run(self):
         self.__i2cThread.start()
-        while True:
-            # self.__oscilloscopeGraphic.draw_grid()
-            break
