@@ -18,9 +18,11 @@ Currently you'll need to install Yarpie emulator on your environment to test it
 ## How to run
 
 Once dependencies are installed, open src folder and run
-in windows ```shell
+in windows
+```shell
 python .\main.py
 ```
-in linux ```shell
+in linux
+```shell
 python3 ./main.py
 ```
