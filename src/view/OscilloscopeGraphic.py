@@ -11,6 +11,7 @@ class OscilloscopeGraphic:
         )
         self.__paths = (
             QtGui.QPainterPath(),
+            QtGui.QPainterPath(),
             QtGui.QPainterPath()
         )
         self.__channels_settings = (
@@ -110,8 +111,22 @@ class OscilloscopeGraphic:
                 previous_last_point = end_point
         self.__scene.addPath(path, pen)
 
+    def _drawScale(self):
+        path = self.__paths[2]
+        path.clear()
+        pen = self.__pens[0]
+        pen.setWidth(1)
+        channel_scale = self.__channels_settings[0].get("scale").get(
+            "vertical") > self.__channels_settings[1].get("scale").get("vertical") and 0 or 1
+        path.addText(self.__voltageValueToPoint(
+            5, 10, channel_scale), QtGui.QFont(), "5 Volts")
+        path.addText(self.__voltageValueToPoint(
+            0, 10, channel_scale), QtGui.QFont(), "0 Volts")
+        self.__scene.addPath(path, pen)
+
     def drawChannelsCurves(self, channel_1=[], channel_2=[]):
         self.__scene.clear()
+        self._drawScale()
         if self.__channels_settings[0].get("visible"):
             self._drawSingleCurve(0, channel_1)
         if self.__channels_settings[1].get("visible"):

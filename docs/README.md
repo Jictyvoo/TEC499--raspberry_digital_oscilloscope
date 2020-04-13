@@ -2,6 +2,8 @@
 
 This project is based on the intent to emulate an oscilloscope using a Raspberry Pi, a singleboard computer, and a signal converter, ADS1115, but later we switched to Yarpie to emulate the signals the program receives by I2C protocol.
 
+## For update GUI
+
 To generate scripts write in terminal
 ```shell
 python -m PyQt5.uic.pyuic -x main_frame.ui -o src/view/main_window.py
@@ -36,7 +38,7 @@ Execute using Python3.x
 Currently you'll need to install Yarpie emulator on your environment to test it
 
 
-## How to run
+### How to run
 
 Once dependencies are installed, open src folder and run
 in windows
@@ -47,3 +49,6 @@ in linux
 ```shell
 python3 ./main.py
 ```
+
+## License
+GNU
